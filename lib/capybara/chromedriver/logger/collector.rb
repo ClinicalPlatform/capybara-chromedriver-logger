@@ -32,11 +32,11 @@ module Capybara
         def flush_logs!
           browser_logs.each do |log|
             message = Message.new(log)
-            
+
             next if should_filter?(message)
 
             errors << message if message.error?
-            
+
             log_destination.puts message.to_s
           end
         end
@@ -53,7 +53,6 @@ module Capybara
           Capybara
             .current_session
             .driver.browser
-            .manage
             .logs
             .get(type)
         end
